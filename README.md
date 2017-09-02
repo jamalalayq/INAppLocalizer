@@ -22,7 +22,7 @@ pod 'INAppLocalizer'
 
 ## Author
 
-Gamal, gamalalyk@gmail.com
+Gamal, gamalal3yk@gmail.com
 
 ## License
 
