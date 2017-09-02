@@ -17,12 +17,12 @@ INAppLocalizer is available through [CocoaPods](http://cocoapods.org). To instal
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "INAppLocalizer"
+pod 'INAppLocalizer'
 ```
 
 ## Author
 
-gemgemo, gemgemo@users.noreply.github.com
+Gamal, gamalalyk@gmail.com
 
 ## License
 

@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import INAppLocalizer
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        NotificationCenter.default.addObserver(self, selector: #selector(onLanguageDidChanged), name: .LanguageDidChanged, object: nil)
+        print(INAppLocalizer.current)
+        print(INAppLocalizer.getSelectedLanguages())
+        INAppLocalizer.set(language: "en")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func onLanguageDidChanged() {
+        debugPrint(#function)
     }
 
 }

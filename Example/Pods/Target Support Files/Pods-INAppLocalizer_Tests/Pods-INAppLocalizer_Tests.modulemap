@@ -1,0 +1,6 @@
+framework module Pods_INAppLocalizer_Tests {
+  umbrella header "Pods-INAppLocalizer_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
