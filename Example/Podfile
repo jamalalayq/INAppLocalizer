@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'INAppLocalizer_Example' do
+  pod 'INAppLocalizer', :path => '../'
+
+  target 'INAppLocalizer_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
