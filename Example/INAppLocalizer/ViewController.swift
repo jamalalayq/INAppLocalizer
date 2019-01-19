@@ -9,19 +9,23 @@
 import UIKit
 import INAppLocalizer
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, Localizer {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(onLanguageDidChanged), name: .LanguageDidChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onLanguageDidChanged), name: .languageDidChanged, object: nil)
         print(INAppLocalizer.current)
         print(INAppLocalizer.getSelectedLanguages())
-        INAppLocalizer.set(language: "en")
+        INAppLocalizer.set(language: "ar")
     }
 
-    func onLanguageDidChanged() {
-        debugPrint(#function)
+    @objc func onLanguageDidChanged() {
+        let language = localize(for: LocalizationsKeys.language)
+        print(#function, language)
     }
 
 }
 
+enum LocalizationsKeys: String, LocalizedKey {
+    case language = "langauge.lan"
+}

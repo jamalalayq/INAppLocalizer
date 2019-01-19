@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  INAppLocalizer
+
+  Created by Jamal Alayq on 1/19/19.
+  Copyright © 2019 CocoaPods. All rights reserved.
+*/
+
+"langauge.lan" = "English";

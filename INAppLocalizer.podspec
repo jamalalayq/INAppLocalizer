@@ -8,7 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'INAppLocalizer'
-  s.version          = '0.1.1'
+  s.version          = '0.3.0'
+  s.swift_version    = '4.2'
   s.summary          = 'Localizations in application.'
 
 # This description is used to generate tags and improve search results.
