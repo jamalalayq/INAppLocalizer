@@ -61,10 +61,27 @@ public extension Notification.Name {
 
 public extension String {
     
-    /// get localize string for key from localizable files
+    @available(*, deprecated, renamed: "localize()" ,message: "This will be removed in v1.0; please migrate to localize function.")
     public var localized: String {
-        guard let languageStringsFilePath = Bundle.main.path(forResource: INAppLocalizer.current, ofType: "lproj") else { return Bundle.main.localizedString(forKey: self, value: nil, table: nil) }
-        return Bundle(path: languageStringsFilePath)?.localizedString(forKey: self, value: nil, table: nil) ?? self
+        let path = getStringsFilePath()
+        return Bundle(path: path)?.localizedString(forKey: self, value: nil, table: nil) ?? self
+    }
+    
+    
+    /// Localize keys from custom tables
+    ///
+    /// - Parameter table: Strings files you want to localize from it.
+    /// - Returns: localized key value
+    public func localize(from table: String = "Localizable") -> String {
+        let path = getStringsFilePath()
+        return Bundle(path: path)?.localizedString(forKey: self, value: nil, table: table) ?? self
+    }
+    
+    private func getStringsFilePath() -> String {
+        guard let languageStringsFilePath = Bundle.main.path(forResource: INAppLocalizer.current, ofType: "lproj") else {
+            return Bundle.main.localizedString(forKey: self, value: nil, table: nil)
+        }
+        return languageStringsFilePath
     }
 }
 
@@ -74,8 +91,17 @@ public protocol LocalizedKey: RawRepresentable where Self.RawValue == String { }
 
 /// Nice way to make localizations more readable.
 public protocol Localizer { }
+
 public extension Localizer {
-    func localize<Key: LocalizedKey>(for key: Key) -> String {
-        return key.rawValue.localized
+    
+    /// In order to localize keys from custom enums which inherit from **LocalizedKey**
+    ///
+    /// - Parameters:
+    ///   - key: localized key
+    ///   - table: The table which contain keys with localized values.
+    /// - Returns: The localized value by key which passed in function.
+    func localize<Key: LocalizedKey>(for key: Key, from table: String = "Localizable") -> String {
+        return key.rawValue.localize(from: table)
     }
+    
 }

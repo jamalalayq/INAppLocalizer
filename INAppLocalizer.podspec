@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'INAppLocalizer'
-  s.version          = '0.3.0'
+  s.version          = '0.5.0'
   s.swift_version    = '4.2'
   s.summary          = 'Localizations in application.'
 
