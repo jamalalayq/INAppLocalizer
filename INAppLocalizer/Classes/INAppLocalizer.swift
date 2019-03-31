@@ -18,7 +18,7 @@ public final class INAppLocalizer: NSObject {
      */
     public class func getSelectedLanguages() -> Array<String> {
         var languages = Bundle.main.localizations
-        if let base = languages.index(of: "Base") {
+        if let base = languages.firstIndex(of: "Base") {
             languages.remove(at: base)
         }
         return languages
@@ -51,7 +51,7 @@ public final class INAppLocalizer: NSObject {
 // MARK:-  Notifications.Name
 
 public extension Notification.Name {
-    public static var languageDidChanged: Notification.Name {
+    static var languageDidChanged: Notification.Name {
         return Notification.Name("language.did.changed.ia")
     }
 }
@@ -61,8 +61,8 @@ public extension Notification.Name {
 
 public extension String {
     
-    @available(*, deprecated, renamed: "localize()" ,message: "This will be removed in v1.0; please migrate to localize function.")
-    public var localized: String {
+    @available(*, deprecated, renamed: "localize()" ,message: "This will be removed in the future; please migrate to localize function.")
+    var localized: String {
         let path = getStringsFilePath()
         return Bundle(path: path)?.localizedString(forKey: self, value: nil, table: nil) ?? self
     }
@@ -72,7 +72,7 @@ public extension String {
     ///
     /// - Parameter table: Strings files you want to localize from it.
     /// - Returns: localized key value
-    public func localize(from table: String = "Localizable") -> String {
+    func localize(from table: String = "Localizable") -> String {
         let path = getStringsFilePath()
         return Bundle(path: path)?.localizedString(forKey: self, value: nil, table: table) ?? self
     }
